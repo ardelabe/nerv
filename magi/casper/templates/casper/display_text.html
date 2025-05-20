@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extracted Text</title>
+</head>
+<body>
+    <h1>Extracted Text</h1>
+    <p>Prompt Type: {{ prompt_type }}</p>
+    {% if file_name %}
+        <p>File Name: {{ file_name }}</p>
+    {% endif %}
+    <hr>
+    <p>{{ text }}</p>
+</body>
+</html>
