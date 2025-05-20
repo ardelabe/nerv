@@ -2,14 +2,37 @@
 <html>
 <head>
     <title>Extracted Text</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        h1 { color: #333; }
+        p { margin-bottom: 10px; }
+        .content-box { background-color: #f9f9f9; padding: 15px; border-radius: 5px; border: 1px solid #eee; white-space: pre-wrap; word-wrap: break-word; }
+        .button-container { text-align: center; margin-top: 20px; }
+        .button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .button:hover { background-color: #45a049; }
+    </style>
 </head>
 <body>
-    <h1>Extracted Text</h1>
-    <p>Prompt Type: {{ prompt_type }}</p>
-    {% if file_name %}
-        <p>File Name: {{ file_name }}</p>
-    {% endif %}
-    <hr>
-    <p>{{ text }}</p>
+    <div class="container">
+        <h1>Extracted Text</h1>
+        <p>Prompt Type: <strong>{{ prompt_type }}</strong></p>
+        {% if file_name %}
+            <p>File Name: <strong>{{ file_name }}</strong></p>
+        {% endif %}
+        <hr>
+        <h2>Content:</h2>
+        <div class="content-box">
+            <p>{{ text }}</p>
+        </div>
+
+        <div class="button-container">
+            <form action="{% url 'casper:send_to_ai_studio' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="input_data_id" value="{{ input_data.id }}">
+                <button type="submit" class="button">Send to Google AI Studio</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

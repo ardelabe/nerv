@@ -24,3 +24,10 @@ class InputData(models.Model):
             return f"Data from {self.file_name}"
         else:
             return f"Text data submitted on {self.submission_date}"
+
+PROMPT_DEFINITIONS = {
+    'summary': "Por favor, resuma o seguinte texto de forma concisa e objetiva:",
+    'question': "Com base no texto a seguir, responda a pergunta: ", # A pergunta do usuário será concatenada aqui.
+    'translation': "Traduza o seguinte texto para o português do Brasil:", # Ou para outro idioma, dependendo da necessidade.
+    'other': "Analise o seguinte conteúdo: " # Um prompt mais genérico.
+}

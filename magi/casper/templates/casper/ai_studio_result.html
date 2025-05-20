@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google AI Studio Result</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 20px; }
+        .content-box { background-color: #f9f9f9; padding: 15px; border-radius: 5px; border: 1px solid #eee; white-space: pre-wrap; word-wrap: break-word; margin-bottom: 15px; }
+        .error-message { color: red; font-weight: bold; }
+        .back-button { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+        .back-button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google AI Studio Result</h1>
+
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% else %}
+            <p>Prompt Type: <strong>{{ prompt_type }}</strong></p>
+            {% if file_name %}
+                <p>File Name: <strong>{{ file_name }}</strong></p>
+            {% endif %}
+            <hr>
+            <h2>AI Response:</h2>
+            <div class="content-box">
+                <p>{{ ai_response }}</p>
+            </div>
+            
+            <h2>Original Content Sent:</h2>
+            <div class="content-box">
+                <p>{{ original_text }}</p>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'casper:read_file' %}" class="back-button">Back to Input</a>
+    </div>
+</body>
+</html>
