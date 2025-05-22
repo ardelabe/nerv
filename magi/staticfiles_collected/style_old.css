@@ -1,0 +1,99 @@
+/* Paleta de Cores NERV-sutil */
+:root {
+    --nerv-dark-bg: #1a1a1a; /* Fundo principal, quase preto */
+    --nerv-text-color: #e0e0e0; /* Cinza claro para texto */
+    --nerv-primary-accent: #e50000; /* Vermelho escuro/bordô */
+    --nerv-secondary-accent: #00ff00; /* Verde limão/neon */
+    --nerv-border-color: #333; /* Borda de elementos */
+    --nerv-shadow-color: rgba(0, 0, 0, 0.5); /* Sombra sutil */
+}
+
+body {
+    background-color: var(--nerv-dark-bg);
+    color: var(--nerv-text-color);
+    font-family: 'Roboto', sans-serif; /* Ou outra fonte clean do Google Fonts */
+}
+
+/* Customização do Bootstrap */
+.bg-dark-custom {
+    background-color: var(--nerv-dark-bg) !important;
+    border-bottom: 1px solid var(--nerv-border-color); /* Linha sutil no navbar */
+}
+
+.text-danger-custom {
+    color: var(--nerv-primary-accent) !important;
+}
+
+.navbar-brand {
+    letter-spacing: 0.1em; /* Pequeno espaçamento para 'Magi Central' */
+}
+
+.nav-link {
+    color: var(--nerv-text-color) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--nerv-secondary-accent) !important; /* Verde neon no hover/ativo */
+    border-bottom: 1px solid var(--nerv-secondary-accent); /* Linha abaixo no hover/ativo */
+}
+
+.btn-primary {
+    background-color: var(--nerv-primary-accent);
+    border-color: var(--nerv-primary-accent);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--nerv-primary-accent), 10%) !important;
+    border-color: darken(var(--nerv-primary-accent), 10%) !important;
+}
+
+.form-control {
+    background-color: #2a2a2a; /* Campo de input mais escuro */
+    color: var(--nerv-text-color);
+    border: 1px solid var(--nerv-border-color);
+}
+
+.form-control:focus {
+    background-color: #2a2a2a;
+    color: var(--nerv-text-color);
+    border-color: var(--nerv-secondary-accent); /* Borda verde neon no focus */
+    box-shadow: 0 0 0 0.25rem rgba(0, 255, 0, 0.25); /* Sombra verde neon no focus */
+}
+
+/* Estilo para cards de resultado (ex: chunks) */
+.card-custom {
+    background-color: #242424; /* Fundo do card */
+    border: 1px solid var(--nerv-border-color);
+    box-shadow: 0 4px 8px var(--nerv-shadow-color); /* Sombra sutil */
+    color: var(--nerv-text-color);
+}
+
+/* Pequeno detalhe NERV (triângulo sutil) */
+.nerv-corner-detail {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid rgba(0, 255, 0, 0.1); /* Triângulo verde neon translúcido */
+    z-index: 1000;
+    opacity: 0.3; /* Muito sutil */
+}
+
+/* Responsividade (exemplo básico) */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .nerv-corner-detail {
+        bottom: 5px;
+        right: 5px;
+        border-bottom-width: 15px;
+        border-left-width: 10px;
+        border-right-width: 10px;
+    }
+}

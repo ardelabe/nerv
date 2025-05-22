@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from django.conf import settings # Importe settings
+from django.conf.urls.static import static # Importe static
+from django.views.generic import TemplateView # Importe TemplateView
 
 def home(request):
     """
@@ -27,5 +30,9 @@ def home(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('casper/', include('casper.urls')),
-    path('', home, name='home'),  # Mapeia a URL raiz para a view home
+    path('', TemplateView.as_view(template_name='base/home.html'), name='home'), # Página inicial simples
+    path('melchior/', include('melchior.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,19 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block title %}Bem-vindo à Magi Central{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center text-center py-5">
+    <div class="col-md-8">
+        <h1 class="display-4 text-white">MAGI CENTRAL</h1>
+        <p class="lead text-muted">Sua plataforma integrada para análise de dados e legislação.</p>
+        <div class="mt-4">
+            <a href="{% url 'casper:casper_home' %}" class="btn btn-primary btn-lg mx-2 my-2">Acessar Casper</a> {# <--- MUDANÇA AQUI #}
+            <a href="{% url 'melchior:melchior_search' %}" class="btn btn-secondary btn-lg mx-2 my-2">Acessar Melchior</a> {# <--- MUDANÇA AQUI #}
+        </div>
+    </div>
+</div>
+
+<div class="nerv-corner-detail"></div> {# Detalhe sutil NERV no canto #}
+{% endblock %}

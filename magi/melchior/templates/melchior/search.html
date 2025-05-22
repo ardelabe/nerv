@@ -1,0 +1,47 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block title %}Melchior - Busca de Legislação{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <h2 class="text-white text-center mb-4">Melchior: Assistente Legal Autônomo</h2>
+        <p class="text-muted text-center mb-5">Pergunte sobre qualquer legislação. Melchior encontrará e analisará as normas mais relevantes, resolvendo antinomias para você.</p>
+        
+        <form action="{% url 'melchior:melchior_search' %}" method="get" class="mb-5"> {# <--- MUDANÇA AQUI: Adicione 'melchior:' #}
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" name="q" placeholder="Ex: Qual a lei sobre IPTU em Londrina?" value="{{ query }}">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+
+        {% if results %}
+            <h3 class="text-white mb-3">Resultados da Busca:</h3>
+            <div class="card card-custom mb-4">
+                <div class="card-body">
+                    {# A resposta gerada pelo Gemini virá aqui #}
+                    <p class="card-text text-white-50"><strong>Resposta:</strong> {{ generated_answer }}</p>
+                </div>
+            </div>
+            
+            <h4 class="text-white mt-4 mb-3">Fontes Relevantes:</h4>
+            <div class="list-group">
+                {% for result in results %}
+                <div class="list-group-item list-group-item-action card-custom mb-2">
+                    <h5 class="mb-1 text-nerv-secondary-accent">Art. {{ result.ordem_no_documento }} - {{ result.documento_nome|truncatechars:80 }}</h5>
+                    <p class="mb-1 text-muted">{{ result.conteudo_tratado|truncatechars:200 }}</p>
+                    <small class="text-white-50">Publicado em: {{ result.documento_data_publicacao }} | Hierarquia: {{ result.documento_hierarquia }}</small>
+                    {# Link para o documento original, se você tiver uma URL para ele #}
+                    {# <a href="{{ result.documento_url }}" target="_blank" class="text-decoration-none float-end">Ver íntegra</a> #}
+                </div>
+                {% endfor %}
+            </div>
+        {% elif query %}
+            <p class="text-muted text-center">Nenhum resultado encontrado para "{{ query }}". Tente uma pergunta diferente.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="nerv-corner-detail"></div> {# Detalhe sutil NERV no canto #}
+{% endblock %}

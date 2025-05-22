@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'casper',
+    'melchior',
 
 ]
 
-MEDIA_ROOT = 'media'  # Directory where files will be saved
+# MEDIA_ROOT = 'media'  # Directory where files will be saved
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'  # URL to access the files
 
@@ -60,7 +66,7 @@ ROOT_URLCONF = 'magi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'magi', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,6 +127,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# STATIC_ROOT é onde 'collectstatic' vai COLETAR todos os arquivos estáticos.
+# Deve ser um diretório VAZIO que o Django irá preencher.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_collected') # Sugiro um nome mais específico
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'magi', 'static'), # <--- Adicione esta linha
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
