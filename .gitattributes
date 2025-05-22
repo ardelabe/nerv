@@ -1,4 +1,0 @@
-*.sqlite3 filter=lfs diff=lfs merge=lfs -text
-magi/chroma_db/e2a998eb-bdad-4e5d-ae85-028e22097d03/data_level0.bin filter=lfs diff=lfs merge=lfs -text
-magi/db.sqlite3 filter=lfs diff=lfs merge=lfs -text
-magi/chroma_db/chroma.sqlite3 filter=lfs diff=lfs merge=lfs -text
